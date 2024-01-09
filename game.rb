@@ -29,3 +29,17 @@ class Pine
     @quantity -= pines
   end
 end
+
+#! Clase para algoritmo de puntaje puntaje
+class Score
+  attr_accesor
+end
+#! Clase para mostrar el resultado
+class Board
+  attr_accesor
+end
+
+#! Clase para iniciar el juego
+class Game
+
+end
