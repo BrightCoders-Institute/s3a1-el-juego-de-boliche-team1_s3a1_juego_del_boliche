@@ -2,20 +2,20 @@
 
 # Clase para definir al jugador
 class Player
-  attr_accesor :name
+  attr_accessor :name
 
   def initialize(name)
     @name = name
   end
 
   def throw(pines)
-    fall = rand(1..pines)
+    fall = rand(0..pines)
   end
 end
 
 # Clase para definir los pinos
 class Pine
-  attr_accesor :quantity
+  attr_accessor :quantity
 
   def initialize
     @quantity = 10
@@ -27,19 +27,40 @@ class Pine
 
   def update_pines(pines)
     @quantity -= pines
+    puts "#{@quantity}"
+  end
+  def restart_pines
+    @quantity = 10
   end
 end
 
-#! Clase para algoritmo de puntaje puntaje
+# ! Clase para algoritmo de puntaje puntaje
 class Score
-  attr_accesor
+  attr_accessor :score 
+  
+  def initialize 
+    @score = 0
+  end
+
+  def spare
+  end
+
+  def strike
+  end
 end
-#! Clase para mostrar el resultado
+
+# ! Clase para mostrar el resultado
 class Board
-  attr_accesor
+  attr_accessor
 end
 
-#! Clase para iniciar el juego
+# ! Clase para iniciar el juego
 class Game
-
 end
+player = Player.new('will')
+pine = Pine.new
+
+roll = player.throw(pine.show_pines)
+puts roll
+pine.update_pines(roll)
+
