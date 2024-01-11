@@ -3,14 +3,15 @@
 require 'minitest/autorun'
 require_relative 'player'
 
+# :reek:InstanceVariableAssumption
 # Pruebas de la clase Player
 class TestPlayer < Minitest::Test
   def setup
-    @player = Player.new("Alice")
+    @player = Player.new('Alice')
   end
 
   def test_name
-    assert_equal "Alice", @player.name
+    assert_equal 'Alice', @player.name
   end
 
   def test_throw_ball

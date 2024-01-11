@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require_relative 'game'
 
+# :reek:InstanceVariableAssumption
 # Pruebas de la clase Game
 class TestGame < Minitest::Test
   def setup
