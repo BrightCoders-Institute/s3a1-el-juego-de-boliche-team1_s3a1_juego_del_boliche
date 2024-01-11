@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Clase para calcular el puntaje en el juego de boliche
 class ScoreCalculator
   def initialize(throws)
     @throws = throws
@@ -13,11 +16,9 @@ class ScoreCalculator
       display_frame_info(frame + 1, first_throw, second_throw)
       if strike?(throw_index)
         total_score += 10 + bonus_strike(throw_index)
-        display_frame_score(total_score)
         throw_index += 1
       elsif spare?(throw_index)
         total_score += 10 + bonus_spare(throw_index)
-        display_frame_score(total_score)
         throw_index += 2
       else
         frame_score = sum_throws(throw_index)
@@ -25,6 +26,7 @@ class ScoreCalculator
         display_frame_score(total_score, frame_score)
         throw_index += 2
       end
+      display_frame_score(total_score)
       frame += 1
     end
     total_score
@@ -59,8 +61,8 @@ class ScoreCalculator
     puts "Primer tiro: #{first_throw} | Segundo tiro: #{second_throw}"
   end
 
-  def display_frame_score(total_score, frame_score = nil)
-    frame_score_info = frame_score.nil? ? '' : "Puntuación de la ronda: #{frame_score} | "
+  def display_frame_score(total_score, frame_score = 0)
+    frame_score_info = frame_score.zero? ? '' : "Puntuación de la ronda: #{frame_score} | "
     puts "#{frame_score_info} Puntuación total: #{total_score}"
   end
 end
