@@ -33,7 +33,7 @@ Para instalar el proyecto, sigue estos pasos:
 ## Cómo Ejecutar el Proyecto
 Para ejecutar el proyecto, utiliza el siguiente comando en tu terminal:
 ```bash
-ruby game.rb
+ruby src/game.rb
 ```
 
 ## Cómo Utilizar el Proyecto

@@ -47,12 +47,12 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2024-01-10 18:35:34 -0600'>2024-01-10 18:35:34 -0600</time>
+          Never committed
         
       </span>
     </div>
     <div>
-      <h3><small>. /</small> player.rb</h3>
+      <h3><small>. /</small> game.rb</h3>
     </div>
   </div>
   <!--End Page Title -->
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">12</span><small> lines of codes</small></div>
-              <div><span class="metric">2</span><small> methods</small></div>
+              <div><span class="metric">35</span><small> lines of codes</small></div>
+              <div><span class="metric">3</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">1.0</span><small> complexity/method</small></div>
-              <div><span class="metric">2</span><small> churn</small></div>
+              <div><span class="metric">1.6</span><small> complexity/method</small></div>
+              <div><span class="metric">0</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">2.0</span><small> complexity</small></div>
+              <div><span class="metric">4.66</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,8 +88,8 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                2
-                smells
+                0
+                smell
               </a>
             </li>
           </ul>
@@ -97,18 +97,41 @@
       </div>
     </div>
 
-    <code class="prettyprint linenums lang-ruby file-code js-file-code"># 
-class Player<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>Player has no descriptive comment</span>          </div>  </li></ol>
-  attr_accessor :name<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Attribute.md" target="_blank"><b>Attribute</b></a>        </span>      </div>      <span>Player#name is a writable attribute</span>          </div>  </li></ol>
+    <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
 
-  def initialize(name)
-    @name = name
+require_relative &#39;score_calculator&#39;
+require_relative &#39;player&#39;
+
+# inicializa el juego
+class Game
+  def initialize
+    @throws = []
   end
 
-  def throw_ball
-    rand(0..10)
+  def throw_ball(pins_knocked_down)
+    @throws &lt;&lt; pins_knocked_down
+  end
+
+  def calculate_score
+    score_calculator = ScoreCalculator.new(@throws)
+    score_calculator.calculate_score
   end
 end
+
+# Ejemplo de uso con tiros generados aleatoriamente
+game = Game.new
+jugador1 = Player.new(&#39;fernando&#39;)
+10.times do
+  first_throw = rand(0..10)
+  second_throw = rand(0..(10 - first_throw))
+  game.throw_ball(first_throw)
+  game.throw_ball(second_throw)
+end
+# Añadir tiros adicionales para la última ronda
+game.throw_ball(rand(0..10)) # Tiro adicional para la última ronda
+game.throw_ball(rand(0..10)) # Tiro adicional para la última ronda
+# Calcular y mostrar la puntuación final
+puts &quot;\nJugador ganador: #{jugador1.name} \nPuntuación Final: #{game.calculate_score}&quot;
 </code>
   </div>
 </div>
