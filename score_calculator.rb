@@ -53,6 +53,8 @@ class ScoreCalculator
   end
 
   def display_frame_info(frame, first_throw, second_throw)
+    pins_remaining = 10 - first_throw
+    second_throw = [second_throw, pins_remaining].min
     puts "\nFrame #{frame}:"
     puts "Primer tiro: #{first_throw} | Segundo tiro: #{second_throw}"
   end
